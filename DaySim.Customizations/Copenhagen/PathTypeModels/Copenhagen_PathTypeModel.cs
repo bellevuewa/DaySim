@@ -293,11 +293,11 @@ namespace DaySim.PathTypeModels {
             RunStopAreaBikeOnTransitModel(skimMode, pathType, votValue, useZones);
           } else {
           }
-        } else if (Mode == Global.Settings.Modes.CarParkRideBike) {
-          if (Global.StopAreaIsEnabled) {
-            RunStopAreaCarParkRideBikeModel(skimMode, pathType, votValue, useZones);
-          } else {
-          }
+          //} else if (Mode == Global.Settings.Modes.CarParkRideBike) {
+          //  if (Global.StopAreaIsEnabled) {
+          //    RunStopAreaCarParkRideBikeModel(skimMode, pathType, votValue, useZones);
+          //  } else {
+          //  }
         } else if (Mode == Global.Settings.Modes.WalkRideBike) {
           if (Global.StopAreaIsEnabled) {
             RunStopAreaWalkRideBikeModel(skimMode, pathType, votValue, useZones);

@@ -350,9 +350,11 @@ namespace DaySim.Framework.Roster {
         int numZones = mapping.Count;
         int numPositive = 0;
         double avgPositive = 0;
+        double sum = 0;
         for (int row = 0; row < numZones; row++) {
           for (int col = 0; col < numZones; col++) {
             ushort value = skimMatrix.GetValue(row, col);
+            sum += value;
             if (value > Constants.EPSILON) {
               numPositive++;
               avgPositive += value / scaleFactor;
@@ -361,7 +363,7 @@ namespace DaySim.Framework.Roster {
         }
         double pctPositive = Math.Round(numPositive * 100.0 / (numZones * numZones));
         double avgValue = avgPositive / Math.Max(numPositive, 1);
-        Global.PrintFile.WriteLine("Skim File {0}, {1} percent of values are positive, with average value {2}.", entry.Name, pctPositive, avgValue);
+        Global.PrintFile.WriteLine(string.Format("Skim File {0}, field={1}, scaling={2} {3}% of values are positive, average value={4}, sum={5}.", entry.Name, entry.Field, (float)entry.Scaling, pctPositive, avgValue, sum), true);
       }
 
       foreach (
