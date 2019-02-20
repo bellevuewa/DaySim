@@ -1,4 +1,4 @@
-// Copyright 2005-2008 Mark A. Bradley and John L. Bowman
+﻿// Copyright 2005-2008 Mark A. Bradley and John L. Bowman
 // Copyright 2011-2013 John Bowman, Mark Bradley, and RSG, Inc.
 // You may not possess or use this file without a License for its use.
 // Unless required by applicable law or agreed to in writing, software
@@ -758,9 +758,9 @@ namespace DaySim.AggregateLogsums {
         //  }
         //}
         computeUtilityCounter++;
-        if (computeUtilityCounter >= 550485 && computeUtilityCounter <= 550550) {
-          Global.PrintFile.WriteLine(string.Format("ComputeUtility computeUtilityCounter={0}, lastUtilityString={1}, current utilityString={2}", computeUtilityCounter, lastUtilityString, utilityString), true);
-        }
+        //if (computeUtilityCounter >= 550485 && computeUtilityCounter <= 550550) {
+        //  Global.PrintFile.WriteLine(string.Format("ComputeUtility computeUtilityCounter={0}, lastUtilityString={1}, current utilityString={2}", computeUtilityCounter, lastUtilityString, utilityString), true);
+        //}
         lastUtilityString = utilityString;
       }
       return Math.Exp(utility);
