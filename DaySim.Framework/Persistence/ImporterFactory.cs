@@ -95,9 +95,7 @@ namespace DaySim.Framework.Persistence {
           if (Global.PrintFile != null) {
             Global.PrintFile.WriteLine(message);
           }
-          Environment.Exit(0);
-
-          return;
+          throw new Exception(message);
         }
 
         if (property.PropertyType == typeof(double)) {

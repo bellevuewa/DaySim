@@ -2653,8 +2653,10 @@ namespace DaySim {
               writer.Write(tourId);
               writer.Write(Global.Configuration.InputTripDelimiter);
 
-              writer.Write(0);
-              writer.Write(Global.Configuration.InputTripDelimiter);
+              if (true || Global.Configuration.DataType != "Actum") {
+                writer.Write(0);
+                writer.Write(Global.Configuration.InputTripDelimiter);
+              }
 
               for (int i = 0; i < row.Length; i++) {
                 writer.Write(row[i]);
@@ -2693,9 +2695,11 @@ namespace DaySim {
       writer.Write("tour_id");
       writer.Write(Global.Configuration.InputTripDelimiter);
 
-      writer.Write("vot");
-      writer.Write(Global.Configuration.InputTripDelimiter);
-
+      //if (Global.Configuration.DataType != "Actum") {
+      if (!fields.Contains("vot")) {
+        writer.Write("vot");
+        writer.Write(Global.Configuration.InputTripDelimiter);
+      }
       for (int i = 0; i < fields.Length; i++) {
         writer.Write(fields[i]);
 

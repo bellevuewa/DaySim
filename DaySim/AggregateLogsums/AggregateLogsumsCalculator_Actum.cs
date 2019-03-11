@@ -22,6 +22,7 @@ using DaySim.PathTypeModels;
 
 namespace DaySim.AggregateLogsums {
   public sealed class AggregateLogsumsCalculator_Actum : IAggregateLogsumsCalculator {
+    public static bool intenseDebugging = false;
     #region fields
 
     private const double UPPER_LIMIT = 88;
@@ -737,13 +738,34 @@ namespace DaySim.AggregateLogsums {
       return Math.Log(size);
     }
 
+    private string lastUtilityString = "";
+    public static long computeUtilityCounter = 0;
     private double ComputeUtility(double utility) {
       if (utility > UPPER_LIMIT || utility < LOWER_LIMIT) {
         utility = utility > UPPER_LIMIT ? UPPER_LIMIT : LOWER_LIMIT;
       }
+      if (AggregateLogsumsCalculator_Actum.intenseDebugging) {
+        string utilityString = utility.ToString();
 
+        /*
+         * ComputeUtility-0.181965888
+         * ComputeUtility4.935133948435
+        */
+
+        //if (utilityString.Equals("4.935133948435")) {
+        //  if (lastUtilityString.Equals("-0.181965888")) {
+        //    Global.PrintFile.WriteLine("ComputeUtility TIME TO BREAK! computeUtilityCounter={0}", computeUtilityCounter);
+        //  }
+        //}
+        computeUtilityCounter++;
+        //if (computeUtilityCounter >= 550485 && computeUtilityCounter <= 550550) {
+        //  Global.PrintFile.WriteLine(string.Format("ComputeUtility computeUtilityCounter={0}, lastUtilityString={1}, current utilityString={2}", computeUtilityCounter, lastUtilityString, utilityString), true);
+        //}
+        lastUtilityString = utilityString;
+      }
       return Math.Exp(utility);
     }
+
 
 
   }
