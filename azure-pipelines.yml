@@ -6,8 +6,12 @@
 # Code for DaySim is hosted at https://github.com/RSGInc/DaySim
 # https://docs.microsoft.com/azure/devops/pipelines/apps/windows/dot-net
 
+# Azure will build/run tests if on develop branch, or if branch includes 'azure' keyword
 trigger:
-- azure_build
+  branches:
+    include:
+    - develop
+    - *azure*
 
 pool: RSGLocal-Builds
 
