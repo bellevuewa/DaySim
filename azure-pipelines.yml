@@ -25,18 +25,23 @@ pool: RSGLocal-Builds
 strategy:
   maxParallel: 2
   matrix:
-    sacog:
-      testDir: $(Agent.HomeDirectory)\sacog_daysim_test
-      gitRepo: RSGInc/sacog_daysim_test.git
-      config: $(testDir)\daysim\sacog_regress.properties
-      targets: $(testDir)\daysim\azure_target_output
-    # psrc:
-    #   testDir: $(Agent.HomeDirectory)\psrc_daysim_test
-    #   gitRepo: RSGInc/psrc_daysim_test.git
-    #   config: $(testDir)\configuration_sp_regress.properties
-    #   targets: $(testDir)\azure_target_output
-    # # chattanooga fails because roster uses the transcad file-type
-    # # which requires licensed software that is not installed for this machine
+    # sacog:
+    #   testDir: $(Agent.HomeDirectory)\sacog_daysim_test
+    #   gitRepo: RSGInc/sacog_daysim_test.git
+    #   config: $(testDir)\daysim\sacog_regress.properties
+    #   targets: $(testDir)\daysim\azure_target_output
+    fresno:
+      testDir: $(Agent.HomeDirectory)\fresno_daysim_test
+      gitRepo: RSGInc/FresnoABM.git
+      config: $(testDir)\Scenarios\FC14_BASE\11_DaySim\Configuration_regress.properties
+      targets: $(testDir)\Scenarios\FC14_BASE\11_DaySim\azure_target_output
+    psrc:
+      testDir: $(Agent.HomeDirectory)\psrc_daysim_test
+      gitRepo: RSGInc/psrc_daysim_test.git
+      config: $(testDir)\configuration_sp_regress.properties
+      targets: $(testDir)\azure_target_output
+    # chattanooga fails because roster uses the transcad file-type
+    # which requires licensed software that is not installed for this machine
     # chattanooga:
     #   testDir: $(Agent.HomeDirectory)\chattanooga_daysim_test
     #   gitRepo: RSGInc/chattanooga_daysim_test.git
@@ -112,7 +117,6 @@ steps:
       cd $(testDir)
       git checkout .
       git clean -fd
-      git pull
       git lfs pull
 
 - script: |
