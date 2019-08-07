@@ -11,7 +11,7 @@ trigger:
   branches:
     include:
     - develop
-    - *azure*
+    - '*azure*'
 
 pool: RSGLocal-Builds
 
@@ -30,11 +30,11 @@ strategy:
       gitRepo: RSGInc/sacog_daysim_test.git
       config: $(testDir)\daysim\sacog_regress.properties
       targets: $(testDir)\daysim\azure_target_output
-    psrc:
-      testDir: $(Agent.HomeDirectory)\psrc_daysim_test
-      gitRepo: RSGInc/psrc_daysim_test.git
-      config: $(testDir)\configuration_sp_regress.properties
-      targets: $(testDir)\azure_target_output
+    # psrc:
+    #   testDir: $(Agent.HomeDirectory)\psrc_daysim_test
+    #   gitRepo: RSGInc/psrc_daysim_test.git
+    #   config: $(testDir)\configuration_sp_regress.properties
+    #   targets: $(testDir)\azure_target_output
     # # chattanooga fails because roster uses the transcad file-type
     # # which requires licensed software that is not installed for this machine
     # chattanooga:
