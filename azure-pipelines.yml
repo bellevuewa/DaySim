@@ -25,11 +25,11 @@ pool: RSGLocal-Builds
 strategy:
   maxParallel: 2
   matrix:
-    # sacog:
-    #   testDir: $(Agent.HomeDirectory)\sacog_daysim_test
-    #   gitRepo: RSGInc/sacog_daysim_test.git
-    #   config: $(testDir)\daysim\sacog_regress.properties
-    #   targets: $(testDir)\daysim\azure_target_output
+    sacog:
+      testDir: $(Agent.HomeDirectory)\sacog_daysim_test
+      gitRepo: RSGInc/sacog_daysim_test.git
+      config: $(testDir)\daysim\sacog_regress.properties
+      targets: $(testDir)\daysim\azure_target_output
     fresno:
       testDir: $(Agent.HomeDirectory)\fresno_daysim_test
       gitRepo: RSGInc/FresnoABM.git
