@@ -1,19 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using DaySim.Framework.Core;
 using DaySim.Framework.ChoiceModels;
 using DaySim.Framework.DomainModels.Wrappers;
 
-namespace Fresno.ChoiceModels.Default.Models
+namespace DaySim.ChoiceModels.Default.Models
 {
     internal class Fresno_AutoOwnershipModel : AutoOwnershipModel  {
 
       protected override void RegionSpecificCustomizations(ChoiceProbabilityCalculator.Alternative alternative, IHouseholdWrapper household) {
       //home district
-      int homedist = household.Homedist;
-      int homedist_clovis = (homedist = 5 || homedist = 6 || homedist = 8) ? 1 : 0; //clovis area is dist =5,6,8
+      int homedist = household.ResidenceParcel.District;
+      int homedist_clovis = (homedist == 5 || homedist == 6 || homedist == 8) ? 1 : 0; //clovis area is dist =5,6,8
 
       //clovis specific constants
       if (homedist_clovis == 1) 
