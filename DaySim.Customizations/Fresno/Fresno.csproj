@@ -73,6 +73,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChoiceModels\Default\Models\Fresno_AutoOwnershipModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ChoiceModels\Default\Models\Fresno_OtherHomeBasedTourModeModel.cs" />
     <Compile Include="ChoiceModels\Default\Models\Fresno_OtherTourDestinationModel.cs" />
