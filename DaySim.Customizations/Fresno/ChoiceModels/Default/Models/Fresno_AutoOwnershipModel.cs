@@ -16,7 +16,7 @@ namespace Fresno.ChoiceModels.Default.Models
       int homedist_clovis = (homedist = 5 || homedist = 6 || homedist = 8) ? 1 : 0; //clovis area is dist =5,6,8
 
       //clovis specific constants
-      if (homedist_clovis = 1) 
+      if (homedist_clovis == 1) 
       {
         alternative.AddUtilityTerm(101 + alternative.Id, household.Has1Driver.ToFlag()); //101,102 (not used),103,104,105
         alternative.AddUtilityTerm(106 + alternative.Id, household.Has2Drivers.ToFlag()); //106,107,108 (not used),109,110
