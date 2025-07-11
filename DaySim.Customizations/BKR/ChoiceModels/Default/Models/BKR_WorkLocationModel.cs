@@ -34,7 +34,7 @@ namespace DaySim.ChoiceModels.Default.Models {
 
       // BKRCast customization below
       if (zonedist == 62)
-        alternative.AddUtilityTerm(101, 1);
+        alternative.AddUtilityTerm(201, 1);
     }
   }
 }
