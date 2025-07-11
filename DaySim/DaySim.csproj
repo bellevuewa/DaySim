@@ -37,11 +37,18 @@
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup>
-    <GenerateManifests>false</GenerateManifests>
+    <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
     <TargetZone>LocalIntranet</TargetZone>
   </PropertyGroup>
+  <PropertyGroup>
+  <!-- Forces a full build when version inputs change -->
+  <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+
+  <!-- Optional: disable GitVersion's incremental‑build cache -->
+  <GitVersion_DisableCache>true</GitVersion_DisableCache>
+</PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
