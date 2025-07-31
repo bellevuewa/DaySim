@@ -7,16 +7,101 @@ namespace DaySim.ChoiceModels.Default.Models {
     protected override void RegionSpecificCustomizations(ChoiceProbabilityCalculator.Alternative alternative, ITourWrapper tour, int pathType, int mode, IParcelWrapper destinationParcel) {
       //Global.PrintFile.WriteLine("Default PSRC_WorkTourModeModel.RegionSpecificCustomizations called");
 
-      if (mode == Global.Settings.Modes.Transit && pathType != Global.Settings.PathTypes.LightRail && pathType != Global.Settings.PathTypes.CommuterRail && pathType != Global.Settings.PathTypes.Ferry) {
-        if (tour.OriginParcel.District < 60)
-          alternative.AddUtilityTerm(200 + tour.OriginParcel.District, 1);//district specific transit calibration constant
-        else
-          alternative.AddUtilityTerm(200 + 6, 1);
+      //Global.PrintFile.WriteLine("Default PSRC_WorkTourModeModel.RegionSpecificCustomizations called");
+      int homedist = tour.OriginParcel.District;
+      int originBKR = (homedist == 61 || homedist == 62 || homedist == 63 || homedist == 64) ? 1 : 0;
 
-        if (destinationParcel.District < 60)
-          alternative.AddUtilityTerm(300 + destinationParcel.District, 1);//district specific transit calibration constant
-        else
-          alternative.AddUtilityTerm(300 + 6, 1);
+
+      if (mode == Global.Settings.Modes.Transit && pathType != Global.Settings.PathTypes.LightRail && pathType != Global.Settings.PathTypes.CommuterRail && pathType != Global.Settings.PathTypes.Ferry) {
+        if (homedist < 60) {
+          alternative.AddUtilityTerm(200 + tour.OriginParcel.District, 1);//district specific transit calibration constant
+          alternative.AddUtilityTerm(400 + destinationParcel.District, 1);//district specific transit calibration constant
+        } else {
+          alternative.AddUtilityTerm(281, homedist == 60 ? 1 : 0);
+          alternative.AddUtilityTerm(282, homedist == 61 ? 1 : 0);
+          alternative.AddUtilityTerm(283, homedist == 62 ? 1 : 0);
+          alternative.AddUtilityTerm(284, homedist == 63 ? 1 : 0);
+          alternative.AddUtilityTerm(285, homedist == 64 ? 1 : 0);
+          alternative.AddUtilityTerm(286, homedist == 65 ? 1 : 0);
+          alternative.AddUtilityTerm(287, originBKR == 1 ? 1 : 0);
+        }
+      }
+
+      if (mode == Global.Settings.Modes.ParkAndRide) {
+        alternative.AddUtilityTerm(250, pathType == 3 ? 1 : 0);
+        alternative.AddUtilityTerm(251, pathType == 4 ? 1 : 0);
+        alternative.AddUtilityTerm(252, pathType == 5 ? 1 : 0);
+        alternative.AddUtilityTerm(253, pathType == 6 ? 1 : 0);
+        alternative.AddUtilityTerm(254, pathType == 7 ? 1 : 0);
+
+        alternative.AddUtilityTerm(309, originBKR == 1 ? 1 : 0);
+        
+
+      } else if (mode == Global.Settings.Modes.Transit) {
+        alternative.AddUtilityTerm(255, pathType == 3 ? 1 : 0);
+        alternative.AddUtilityTerm(256, pathType == 4 ? 1 : 0);
+        alternative.AddUtilityTerm(257, pathType == 5 ? 1 : 0);
+        alternative.AddUtilityTerm(258, pathType == 6 ? 1 : 0);
+        alternative.AddUtilityTerm(259, pathType == 7 ? 1 : 0);
+
+      } else if (mode == Global.Settings.Modes.Hov3) {
+        //BKR specific constant 
+        alternative.AddUtilityTerm(274, homedist == 60 ? 1 : 0);
+        alternative.AddUtilityTerm(275, homedist == 61 ? 1 : 0);
+        alternative.AddUtilityTerm(276, homedist == 62 ? 1 : 0);
+        alternative.AddUtilityTerm(277, homedist == 63 ? 1 : 0);
+        alternative.AddUtilityTerm(278, homedist == 64 ? 1 : 0);
+        alternative.AddUtilityTerm(279, homedist == 65 ? 1 : 0);
+        alternative.AddUtilityTerm(280, originBKR == 1 ? 1 : 0);
+
+      } else if (mode == Global.Settings.Modes.Hov2) {
+        //BKR specific constant 
+        alternative.AddUtilityTerm(267, homedist == 60 ? 1 : 0);
+        alternative.AddUtilityTerm(268, homedist == 61 ? 1 : 0);
+        alternative.AddUtilityTerm(269, homedist == 62 ? 1 : 0);
+        alternative.AddUtilityTerm(270, homedist == 63 ? 1 : 0);
+        alternative.AddUtilityTerm(271, homedist == 64 ? 1 : 0);
+        alternative.AddUtilityTerm(272, homedist == 65 ? 1 : 0);
+        alternative.AddUtilityTerm(273, originBKR == 1 ? 1 : 0);
+
+      } else if (mode == Global.Settings.Modes.Sov) {
+        //BKR specific constant 
+        alternative.AddUtilityTerm(260, homedist == 60 ? 1 : 0);
+        alternative.AddUtilityTerm(261, homedist == 61 ? 1 : 0);
+        alternative.AddUtilityTerm(262, homedist == 62 ? 1 : 0);
+        alternative.AddUtilityTerm(263, homedist == 63 ? 1 : 0);
+        alternative.AddUtilityTerm(264, homedist == 64 ? 1 : 0);
+        alternative.AddUtilityTerm(265, homedist == 65 ? 1 : 0);
+        alternative.AddUtilityTerm(266, originBKR == 1 ? 1 : 0);
+      } else if (mode == Global.Settings.Modes.Bike) {
+        //BKR specific constant 
+        alternative.AddUtilityTerm(288, homedist == 60 ? 1 : 0);
+        alternative.AddUtilityTerm(289, homedist == 61 ? 1 : 0);
+        alternative.AddUtilityTerm(290, homedist == 62 ? 1 : 0);
+        alternative.AddUtilityTerm(291, homedist == 63 ? 1 : 0);
+        alternative.AddUtilityTerm(292, homedist == 64 ? 1 : 0);
+        alternative.AddUtilityTerm(293, homedist == 65 ? 1 : 0);
+        alternative.AddUtilityTerm(294, originBKR == 1 ? 1 : 0);
+
+      } else if (mode == Global.Settings.Modes.Walk) {
+        //BKR specific constant 
+        alternative.AddUtilityTerm(295, homedist == 60 ? 1 : 0);
+        alternative.AddUtilityTerm(296, homedist == 61 ? 1 : 0);
+        alternative.AddUtilityTerm(297, homedist == 62 ? 1 : 0);
+        alternative.AddUtilityTerm(298, homedist == 63 ? 1 : 0);
+        alternative.AddUtilityTerm(299, homedist == 64 ? 1 : 0);
+        alternative.AddUtilityTerm(300, homedist == 65 ? 1 : 0);
+        alternative.AddUtilityTerm(301, originBKR == 1 ? 1 : 0);
+
+      } else if (mode == Global.Settings.Modes.PaidRideShare) {
+        //BKR specific constant 
+        alternative.AddUtilityTerm(302, homedist == 60 ? 1 : 0);
+        alternative.AddUtilityTerm(303, homedist == 61 ? 1 : 0);
+        alternative.AddUtilityTerm(304, homedist == 62 ? 1 : 0);
+        alternative.AddUtilityTerm(305, homedist == 63 ? 1 : 0);
+        alternative.AddUtilityTerm(306, homedist == 64 ? 1 : 0);
+        alternative.AddUtilityTerm(307, homedist == 65 ? 1 : 0);
+        alternative.AddUtilityTerm(308, originBKR == 1 ? 1 : 0);
       }
     }
   }

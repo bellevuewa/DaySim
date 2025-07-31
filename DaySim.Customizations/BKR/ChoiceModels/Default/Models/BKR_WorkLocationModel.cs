@@ -32,9 +32,13 @@ namespace DaySim.ChoiceModels.Default.Models {
       alternative.AddUtilityTerm(99, homeEastWorkCBD);
       alternative.AddUtilityTerm(100, homeKitWorkCBD);
 
+      // homedist: 1+2: snohomish; 9:kitsap north; 10:pierce
+      int homeOutsideOfKingCounty = (homedist == 1 || homedist == 2 || homedist == 9 || homedist == 10) ? 1 : 0;
+      //if (homeOutsideOfKingCounty == 1 && _person.IsWorker && _person.UsualWorkParcel != null && (_person.Household.ResidenceParcelId == _person.UsualWorkParcelId))
+      //    alternative.AddUtilityTerm(202, 1);
       // BKRCast customization below
       if (zonedist == 62)
-        alternative.AddUtilityTerm(101, 1);
+        alternative.AddUtilityTerm(201, 1);
     }
   }
 }
