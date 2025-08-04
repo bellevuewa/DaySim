@@ -445,8 +445,27 @@ namespace DaySim.ChoiceModels.Default.Models {
         alternative.AddUtilityTerm(20, Global.Configuration.WorkAtHome_FractionGovernmentJobsHigherIncomeCoefficient * govtEMPFraction * higherIncome);
         alternative.AddUtilityTerm(20, Global.Configuration.WorkAtHome_FractionIndustrialJobsHigherIncomeCoefficient * induEMPFraction * higherIncome);
         alternative.AddUtilityTerm(20, Global.Configuration.WorkAtHome_FractionOfficeJobsHigherIncomeCoefficient * offcEMPFraction * higherIncome);
-      }
       
+
+        /*
+         The following code are added by Hu Dong, COB,
+        */
+        // homedist: 1+2: snohomish; 8: Tacoma; 9:kitsap north; 10:pierce; 11: W pierce
+        int homedist = person.Household.ResidenceParcel.District;
+        int homeOutsideOfKingCounty = (homedist == 1 || homedist == 2 || homedist == 8 || homedist == 9 || homedist == 10 || homedist == 11) ? 1 : 0;
+        int workers_outsideofKing = (homeOutsideOfKingCounty == 1 && person.IsWorker) ? 1: 0;
+        int homeInBKR = (homedist >= 61 && homedist <= 64) ? 1 : 0;
+        int workers_inBKR = (homeInBKR == 1 && person.IsWorker) ? 1 : 0;
+        int home_RestKing = (homedist == 60) ? 1 : 0;
+        int workers_restKing = (home_RestKing == 1 && person.IsWorker) ? 1 : 0;
+
+        alternative.AddUtilityTerm(20, Global.Configuration.WorkAtHome_OutsideofKingCountyCoefficient * workers_outsideofKing);
+        alternative.AddUtilityTerm(20, Global.Configuration.WorkAtHome_InsideBKRCoefficient * workers_inBKR);
+        alternative.AddUtilityTerm(20, Global.Configuration.WorkAtHome_RestofKingCountyCoefficient * workers_restKing);
+        // End of COB addition
+
+      }
+
       // rest not available
       for (int altno = 2; altno < 2080; altno++) {
         alternative = choiceProbabilityCalculator.GetAlternative(altno, false, choice == altno);

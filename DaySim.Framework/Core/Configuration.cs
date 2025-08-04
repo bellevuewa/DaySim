@@ -1990,6 +1990,15 @@ namespace DaySim.Framework.Core {
     [XmlAttribute]
     public double WorkAtHome_FractionOfficeJobsHigherIncomeCoefficient { get; set; } = 0.295;
 
+    // The following three coefficients were added by Hu Dong, COB, 7/31/2025
+    [XmlAttribute]
+    public double WorkAtHome_OutsideofKingCountyCoefficient { get; set; } = 0.0;
+    [XmlAttribute]
+    public double WorkAtHome_InsideBKRCoefficient { get; set; } = 0.0;
+    [XmlAttribute]
+    public double WorkAtHome_RestofKingCountyCoefficient { get; set; } = 0.0;
+
+
 
     private List<Type> pluginTypes = null;
     private readonly LazyConcurrentDictionary<Type, Type> assignableObjectTypes = new LazyConcurrentDictionary<Type, Type>();
