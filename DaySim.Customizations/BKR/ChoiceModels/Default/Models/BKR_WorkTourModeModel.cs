@@ -9,7 +9,7 @@ namespace DaySim.ChoiceModels.Default.Models {
 
       //Global.PrintFile.WriteLine("Default PSRC_WorkTourModeModel.RegionSpecificCustomizations called");
       int homedist = tour.OriginParcel.District;
-      int destdist = tour.DestinationParcel.District;
+      int destdist = destinationParcel.District;
       /*
        * 61: Bellevue (DT excluded), 62: Bel DT, 63: Kirkland, 64: Redmond (DT excluded), 65: Other BKR area, 66: Redmond DT
        */
