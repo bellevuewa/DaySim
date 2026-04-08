@@ -12,7 +12,7 @@ namespace DaySim.ChoiceModels.Default.Models {
       int origdist = _tour.OriginParcel.District;
       int destdist = destinationParcel.District;
       int origKitDestTRP = (origdist == 9 || origdist == 11) && (destdist == 8 || destdist == 10 || destdist == 7) ? 1 : 0;
-      int origEastDestCBD = origdist >= 60 && origdist <= 66 && destdist == 4 ? 1 : 0;
+      int origEastDestCBD = origdist >= 60 && origdist <= 65 && destdist == 4 ? 1 : 0;
       int origTacDestKit = origdist == 8 && destdist == 9 || destdist == 11 ? 1 : 0;
       int origKitDestNotKit = (origdist == 9 || origdist == 11) && (destdist != 9 && destdist != 11) ? 1 : 0;
       int origSTacWorkCBD = (origdist == 11 && destdist == 4) ? 1 : 0;

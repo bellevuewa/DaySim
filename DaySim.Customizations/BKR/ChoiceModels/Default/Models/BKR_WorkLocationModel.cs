@@ -17,9 +17,9 @@ namespace DaySim.ChoiceModels.Default.Models {
       int homeKitWorkNotKit = (homedist == 9 || homedist == 11) && zonedist != 9 && zonedist != 11 ? 1 : 0;
       int homeSTacWorkCBD = (homedist == 5 || homedist == 8) && zonedist == 9 ? 1 : 0;
 
-      int homeEastWorkCBD = homedist >= 60 && homedist <= 66 && zonedist == 4 ? 1 : 0;
-      int homeEastWorkEast = homedist >= 60 && homedist <= 66 && zonedist >= 60 && zonedist <= 66 ? 1 : 0;
-      int homeWSWorkEast = homedist == 5 && zonedist >= 60 && zonedist <= 66 ? 1 : 0;
+      int homeEastWorkCBD = homedist >= 60 && homedist <= 65 && zonedist == 4 ? 1 : 0;
+      int homeEastWorkEast = homedist >= 60 && homedist <= 65 && zonedist >= 60 && zonedist <= 65 ? 1 : 0;
+      int homeWSWorkEast = homedist == 5 && zonedist >= 60 && zonedist <= 65 ? 1 : 0;
 
       alternative.AddUtilityTerm(91, homeEastWorkEast);
       alternative.AddUtilityTerm(92, homeTacWorkKit);
